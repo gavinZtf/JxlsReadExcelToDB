@@ -16,8 +16,8 @@ import com.ztf.entity.Department;
 
 public class Main {
 	
-	private static String dataFile = "D://SoftWare//Cygwin//install//home//Administrator//JxlsReadExcelToDB//file//departmentdata.xls";
-    public static final String xmlConfig = "D://SoftWare//Cygwin//install//home//Administrator//JxlsReadExcelToDB//file//xmlConfig.xml";
+	private static String dataFile = "departmentdata.xls";
+    public static final String xmlConfig = "xmlConfig.xml";
 
 	public static void main(String[] args) {
 		try {
@@ -31,7 +31,8 @@ public class Main {
 			beans.put("department", department);
 			beans.put("hrDepartment", hrDepartment);
 			beans.put("departments", departments);
-//		    XLSReadStatus readStatus = mainReader.read(inputXLS, beans);
+		    XLSReadStatus readStatus = mainReader.read(inputXLS, beans);
+		    System.out.println(department.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
