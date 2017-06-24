@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <workbook>
+        <worksheet name="Sheet1">
+            <section startRow="0" endRow="1" />
+            <loop startRow="2" endRow="2" item="staff" var="tscH3cGlJournalsInterface" varType="com.ztf.entity.TscH3cGlJournalsInterface">
+                <section startRow="2" endRow="2">
+                    <mapping row="2" col="2">tscH3cGlJournalsInterface.projectCode</mapping>
+                </section>
+                <loopbreakcondition>
+                    <rowcheck offset="0">
+                        <cellcheck offset="0">Employee Payment Totals:</cellcheck>
+                    </rowcheck>
+                </loopbreakcondition>
+            </loop>
+        </worksheet>
+    </workbook>

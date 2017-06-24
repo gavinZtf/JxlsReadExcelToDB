@@ -17,6 +17,7 @@ import org.jxls.reader.XLSReader;
 import com.ztf.common.Common;
 import com.ztf.entity.Department;
 import com.ztf.entity.Employee;
+import com.ztf.entity.TscH3cGlJournalsInterface;
 
 public class Main {
 	
@@ -29,40 +30,34 @@ public class Main {
 			InputStream inputXML = new BufferedInputStream(Main.class.getResourceAsStream(xmlConfig));
 			XLSReader mainReader = ReaderBuilder.buildFromXML(inputXML);
 			InputStream inputXLS = new BufferedInputStream(Main.class.getResourceAsStream(dataFile));
-			Department department = new Department();
-			Department hrDepartment = new Department();
-			List departments = new ArrayList();
+			List staff = new ArrayList();
 			Map beans = new HashMap();
-			beans.put("department", department);
-			beans.put("hrDepartment", hrDepartment);
-			beans.put("departments", departments);
+			beans.put("staff", staff);
 		    XLSReadStatus readStatus = mainReader.read(inputXLS, beans);
-		    System.out.println(department.getName());
-		    
 		    
 		    //get the data object
-		    List<Employee> empList = department.getStaff();
+		    System.out.println(staff.size());
 		    
-		    String sql = "insert into employee (name, age, payment, bonus) values (?, ?, ?, ?)";
-		    Connection connection = getConnection();
-		    connection.setAutoCommit(false);
-		    PreparedStatement ps = connection.prepareStatement(sql);
-		    final int batchSize = 1000;
-		    int count = 0;
-		    for (Employee employee: empList) {
-		        ps.setString(1, employee.getName());
-		        ps.setInt(2, employee.getAge());
-		        ps.setDouble(3, employee.getPayment());
-		        ps.setDouble(4, employee.getBonus());
-		        ps.addBatch();
-//		        if(++count % batchSize == 0) {
-//		            ps.executeBatch();
-//		        }
-		    }
-		    ps.executeBatch(); // insert remaining records
-		    connection.commit();
-		    ps.close();
-		    connection.close();
+//		    String sql = "insert into employee (name, age, payment, bonus) values (?, ?, ?, ?)";
+//		    Connection connection = getConnection();
+//		    connection.setAutoCommit(false);
+//		    PreparedStatement ps = connection.prepareStatement(sql);
+//		    final int batchSize = 1000;
+//		    int count = 0;
+//		    for (Employee employee: empList) {
+//		        ps.setString(1, employee.getName());
+//		        ps.setInt(2, employee.getAge());
+//		        ps.setDouble(3, employee.getPayment());
+//		        ps.setDouble(4, employee.getBonus());
+//		        ps.addBatch();
+////		        if(++count % batchSize == 0) {
+////		            ps.executeBatch();
+////		        }
+//		    }
+//		    ps.executeBatch(); // insert remaining records
+//		    connection.commit();
+//		    ps.close();
+//		    connection.close();
 		    
 		} catch (Exception e) {
 			e.printStackTrace();
